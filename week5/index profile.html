@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="icon" href="flix.png" type="png/flix.png">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('stars.gif');
+            background-size: auto;
+            background-repeat: repeat;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            background-color: #F0E68C;
+            padding: 20px;
+        }
+
+        main {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            line-height: 1.6;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #008080;
+            border-bottom: 2px solid #008080;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #F0E68C;
+            padding: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #DAA520;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #0066cc;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>My Profile</h1>
+    </header>
+
+    <main>
+        <section>
+            <img src="profile.png" alt="profile">
+            <h2>Who am I?</h2>
+            <ul id="whoAmI"></ul>
+        </section>
+
+        <section>
+            <h2>Question?</h2>
+            <button id="infoButton" onclick="showMyInfo()">Show My Information</button>
+            <div id="questionPart" style="display: none;">
+                <p><b>Course:</b> Bachelor of Science in Information in Technology</p>
+                <p><b>Scholarship:</b> Yes, Public School Scholarship</p>
+                <p><b>Transferee / Second Course?:</b> None</p>
+                <p><b>Did you choose this course?:</b> Yes, because I'm curious about computer and encoding. I want to challenge myself and grow academically.</p>
+                <p><b>What do you want to learn for your Major?:</b> I want to learn how to encode and program precisely, as it's my weakness.</p>
+                <p><b>Goals in life:</b> I want to be a successful software engineer, own a house, car, and have a family.</p>
+                <p><b>Dream to fulfill?:</b> My dream is to repay my parents' hard work and give them financial freedom.</p>
+                <p><b>Hobbies / Interests:</b> Playing e-sports games, learning and fixing cars, and playing basketball.</p>
+            </div>
+        </section>
+
+        <section>
+            <img src="basketball.png" alt="basketball">
+            <button type="button" onclick="showSocialLinks()">Show My Social Links</button>
+            <div id="socialLinks" style="display: none;">
+                <p><b>Links to my social:</b></p>
+                <ul>
+                    <li><a href="https://www.facebook.com/profile.php?id=100011625970941">Facebook</a></li>
+                    <li><a href="https://github.com/hymaybituin">GitHub</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        var whoAmI = [
+            "<b>Name:</b> Hans Edwin Yucson Maybituin",
+            "<b>Age:</b> 20 yrs. old",
+            "<b>Favorite Car:</b> Mitsubishi Evo VIII",
+            "<b>Hobbies:</b> Playing MOBA and first-person shooter games, playing basketball, long drives, and singing",
+            "<b>Nickname:</b> Hans"
+        ];
+
+        var whoAmIList = document.getElementById('whoAmI');
+        whoAmI.forEach(function (item) {
+            var listItem = document.createElement('li');
+            listItem.innerHTML = item;
+            whoAmIList.appendChild(listItem);
+        });
+
+        function showMyInfo() {
+            var questionPart = document.getElementById('questionPart');
+            var infoButton = document.getElementById('infoButton');
+
+            if (questionPart.style.display === 'none') {
+                questionPart.style.display = 'block';
+                infoButton.innerHTML = 'Hide My Information';
+            } else {
+                questionPart.style.display = 'none';
+                infoButton.innerHTML = 'Show My Information';
+            }
+        }
+
+        function showSocialLinks() {
+            var socialLinks = document.getElementById('socialLinks');
+            if (socialLinks.style.display === 'none') {
+                socialLinks.style.display = 'block';
+            } else {
+                socialLinks.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
