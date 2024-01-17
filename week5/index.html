@@ -84,10 +84,34 @@
             text-decoration: none;
             color: #0066cc;
             font-weight: bold;
+            transition: color 0.3s ease;
         }
 
         a:hover {
             text-decoration: underline;
+            color: #004080;
+        }
+
+        /* New styles for the date and time section */
+        .dateTimeSection {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .dateTimeButton {
+            background-color: #F0E68C;
+            padding: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .dateTimeButton:hover {
+            background-color: #DAA520;
         }
     </style>
 </head>
@@ -131,9 +155,19 @@
                 </ul>
             </div>
         </section>
+
+        <!-- New section for date and time -->
+        <section class="dateTimeSection">
+            <button class="dateTimeButton" onclick="displayDateTime()">Click me to display Date and Time.</button>
+            <p id="demo"></p>
+        </section>
     </main>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            alert("Hello vlog, welcome to my guys!! :)");
+        });
+
         var whoAmI = [
             "<b>Name:</b> Hans Edwin Yucson Maybituin",
             "<b>Age:</b> 20 yrs. old",
@@ -169,6 +203,11 @@
             } else {
                 socialLinks.style.display = 'none';
             }
+        }
+
+        function displayDateTime() {
+            var dateTimeElement = document.getElementById('demo');
+            dateTimeElement.innerHTML = Date();
         }
     </script>
 
