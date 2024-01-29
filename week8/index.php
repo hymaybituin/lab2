@@ -32,7 +32,7 @@
     <div class="container">
         <?php
         echo "<h1>Wassup, its me Hans!</h1>";
-        echo "<p>I'm still trying to know this kind of language, please bear with me <3.</p>";
+        echo "<p>I'm still trying to study this kind of language, please be patient with me <3.</p>";
 
         $name = "Hans Maybituin";
         $age = 20;
