@@ -26,7 +26,7 @@
             width: 100%;
         }
     </style>
-    <title>PHP Code with Design</title>
+    <title>Profile</title>
 </head>
 <body>
     <div class="container">
