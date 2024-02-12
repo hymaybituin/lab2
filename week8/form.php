@@ -65,19 +65,66 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
-
     </style>
 </head>
 <body>
+
+<?php
+// Define variables and set to empty values
+$nameErr = $emailErr = $websiteErr = $genderErr = "";
+$name = $email = $website = $comment = $gender = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validate the name
+    if (empty($_POST["name"])) {
+        $nameErr = "Name is required";
+    } else {
+        $name = test_input($_POST["name"]);
+        // Additional validation logic for name if needed
+    }
+
+    // Validate the email
+    if (empty($_POST["email"])) {
+        $emailErr = "Email is required";
+    } else {
+        $email = test_input($_POST["email"]);
+        // Additional validation logic for email if needed
+    }
+
+    // Validate the website
+    if (!empty($_POST["website"])) {
+        $website = test_input($_POST["website"]);
+        // Additional validation logic for website if needed
+    }
+
+    // Validate the comment
+    $comment = test_input($_POST["comment"]);
+
+    // Validate the gender
+    if (empty($_POST["gender"])) {
+        $genderErr = "Gender is required";
+    } else {
+        $gender = test_input($_POST["gender"]);
+        
+    }
+}
+
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+?>
 
 <header>
     <h1>PHP Form Validation Example</h1>
 </header>
 
 <div class="container">
-
     <p><span class="error">* required field</span></p>
-
+    
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
         Name: <input type="text" name="name" value="<?php echo $name;?>">
         <span class="error">* <?php echo $nameErr;?></span>
