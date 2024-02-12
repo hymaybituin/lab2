@@ -119,7 +119,7 @@ function test_input($data) {
 ?>
 
 <header>
-    <h1>PHP Form Validation Example</h1>
+    <h1>PHP Form Validation</h1>
 </header>
 
 <div class="container">
