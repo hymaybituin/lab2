@@ -1,165 +1,145 @@
-<!DOCTYPE HTML>  
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Data</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
             margin: 0;
             padding: 0;
+            background-color: #f2f2f2;
         }
-
-        header {
-            background-color: #4CAF50;
-            padding: 10px;
-            text-align: center;
-            color: white;
-        }
-
         .container {
-            width: 50%;
-            margin: auto;
-            background-color: #fff;
+            max-width: 600px;
+            margin: 0 auto;
             padding: 20px;
-            margin-top: 50px;
-            border-radius: 10px;
+            background-color: #fff;
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        .error {
-            color: #FF0000;
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
         }
-
         form {
-            max-width: 600px;
-            margin: auto;
+            display: flex;
+            flex-direction: column;
         }
-
-        input[type="text"], textarea {
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        textarea {
             width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
+            padding: 8px;
+            margin-bottom: 10px;
             border-radius: 4px;
+            border: 1px solid #ccc;
         }
-
-        input[type="radio"] {
-            margin-right: 5px;
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
         }
-
         input[type="submit"] {
             background-color: #4CAF50;
             color: white;
-            padding: 12px 20px;
+            padding: 10px 20px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
         }
-
         input[type="submit"]:hover {
             background-color: #45a049;
         }
     </style>
 </head>
 <body>
-
-<?php
-// Define variables and set to empty values
-$nameErr = $emailErr = $websiteErr = $genderErr = "";
-$name = $email = $website = $comment = $gender = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate the name
-    if (empty($_POST["name"])) {
-        $nameErr = "Name is required";
-    } else {
-        $name = test_input($_POST["name"]);
-        // Additional validation logic for name if needed
-    }
-
-    // Validate the email
-    if (empty($_POST["email"])) {
-        $emailErr = "Email is required";
-    } else {
-        $email = test_input($_POST["email"]);
-        // Additional validation logic for email if needed
-    }
-
-    // Validate the website
-    if (!empty($_POST["website"])) {
-        $website = test_input($_POST["website"]);
-        // Additional validation logic for website if needed
-    }
-
-    // Validate the comment
-    $comment = test_input($_POST["comment"]);
-
-    // Validate the gender
-    if (empty($_POST["gender"])) {
-        $genderErr = "Gender is required";
-    } else {
-        $gender = test_input($_POST["gender"]);
+    <div class="container">
+        <h2>Insert Data</h2>
         
-    }
-}
+        <form id="myForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email">
+            
+            <label for="website">Website:</label>
+            <input type="text" id="website" name="website">
+            
+            <label for="comment">Comment:</label>
+            <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
+            
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
 
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-?>
-
-<header>
-    <h1>PHP Form Validation</h1>
-</header>
-
-<div class="container">
-    <p><span class="error">* required field</span></p>
-    
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
-        Name: <input type="text" name="name" value="<?php echo $name;?>">
-        <span class="error">* <?php echo $nameErr;?></span>
-        <br><br>
-        E-mail: <input type="text" name="email" value="<?php echo $email;?>">
-        <span class="error">* <?php echo $emailErr;?></span>
-        <br><br>
-        Website: <input type="text" name="website" value="<?php echo $website;?>">
-        <span class="error"><?php echo $websiteErr;?></span>
-        <br><br>
-        Comment: <textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
-        <br><br>
-        Gender:
-        <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
-        <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
-        <input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other">Other  
-        <span class="error">* <?php echo $genderErr;?></span>
-        <br><br>
-        <input type="submit" name="submit" value="Submit">  
-    </form>
-
-    <?php
-    echo "<h2>Your Input:</h2>";
-    echo $name;
-    echo "<br>";
-    echo $email;
-    echo "<br>";
-    echo $website;
-    echo "<br>";
-    echo $comment;
-    echo "<br>";
-    echo $gender;
-    ?>
-
-</div>
-
+            fetch("insert_data.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(result => {
+                alert(result);
+                // You can perform further actions here, such as updating UI or redirecting
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        });
+    </script>
 </body>
 </html>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $servername = "localhost";
+    $username = "webprogmi221";
+    $password = "g_6bCitLu.ljMK*m";
+    $dbname = "webprogmi221";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Prepare INSERT statement
+    $sql = "INSERT INTO hymaybituin_myguests (name, email, website, comment, gender) 
+            VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        echo "Error: " . $conn->error;
+    }
+
+    // Bind parameters and execute
+    $stmt->bind_param("sssss", $_POST['name'], $_POST['email'], $_POST['website'], $_POST['comment'], $_POST['gender']);
+    if ($stmt->execute()) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>
