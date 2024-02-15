@@ -110,7 +110,7 @@
 </html>
 
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//for Socitcloud
     $servername = "localhost";
     $username = "webprogmi221";
     $password = "g_6bCitLu.ljMK*m";
