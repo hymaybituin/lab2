@@ -110,35 +110,33 @@
 </html>
 
 <?php
-//for Socitcloud
-    $servername = "localhost";
-    $username = "webprogmi221";
-    $password = "g_6bCitLu.ljMK*m";
-    $dbname = "webprogmi221";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "myDB";
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+// Check connection
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
 
-    // Prepare INSERT statement
-    $sql = "INSERT INTO hymaybituin_myguests (name, email, website, comment, gender) 
-            VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    if (!$stmt) {
-        echo "Error: " . $conn->error;
-    }
+$sql = "INSERT INTO MyGuests (name,email,website,comment,gender)
+VALUES ('$name', '$email', '$website', '$comment', '$gender')";
 
-    // Bind parameters and execute
-    $stmt->bind_param("sssss", $_POST['name'], $_POST['email'], $_POST['website'], $_POST['comment'], $_POST['gender']);
-    if ($stmt->execute()) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
 
+if (mysqli_query($conn, $sql)) {
+  echo "Record updated successfully";
+} else {
+  echo "Error updating record: " . mysqli_error($conn);
+}
+
+mysqli_close($conn);
+?>
+
+</body>
+</html>
     $stmt->close();
     $conn->close();
 }
