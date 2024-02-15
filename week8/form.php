@@ -122,7 +122,7 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "INSERT INTO MyGuests (name,email,website,comment,gender)
+$sql = "INSERT INTO hymaybituin (name,email,website,comment,gender)
 VALUES ('$name', '$email', '$website', '$comment', '$gender')";
 
 
