@@ -11,17 +11,17 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO hymaybituin_myguests (name, email, website, comment, gender)
+$sql = "SELECT id, name, email, website, comment, gender FROM hymaybituin_myguests";
 $result = $conn->query($sql);
 
-VALUES ('$name', '$email', '$website', '$comment', '$gender')";
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "id: " . $row["id"]. " - Name: " . $row["name"]. " " . $row["email"]. " " . $row["website"]. " " . $row["comment"]. " " . $row["gender"]. "<br>";
 
-if ($conn->query($sql) === TRUE) {
-  echo "New record created successfully";
+  }
 } else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
+  echo "0 results";
 }
-
 $conn->close();
-?>
 ?>
